@@ -1,0 +1,26 @@
+version: '3'
+
+services:
+   dcmrs-broker:
+      build:
+         context: ./dcmrs-broker
+         dockerfile: Dockerfile
+      image: rsna/dcmrs-broker
+      ports:
+         - "4567:4567"
+         - "<SCP_PORT>:11112"
+      environment:
+         - QIDO_REMOTE_AE=<QIDO_REMOTE_AE>
+         - QIDO_REMOTE_HOST=<QIDO_REMOTE_HOST>
+         - QIDO_REMOTE_PORT=<QIDO_REMOTE_PORT>
+         - QIDO_LOCAL_AE=<QIDO_LOCAL_AE>
+         - WAD0_REMOTE_AE=<WAD0_REMOTE_AE>
+         - WADO_REMOTE_HOST=<WADO_REMOTE_HOST>
+         - WADO_LOCAL_AE=<WADO_LOCAL_AE>
+         - SCP_LOCAL_AE=<SCP_LOCAL_AE>
+         - SCP_CACHE_DIR_PATH="/dcmrs-broker/cache"
+      expose:
+         - "4567"
+         - "11112"
+      networks:
+         - internal
