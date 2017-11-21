@@ -3,7 +3,7 @@ To run it, you need Docker >= 1.10, and docker-compose
 
 ## Clone this repo with submodules
 
-git clone --recursive https://github.com/s4s-stack
+git clone --recursive https://github.com/RSNA/s4s-stack
 
 ### Update submodules after git pull
 
