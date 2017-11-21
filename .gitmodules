@@ -1,0 +1,3 @@
+[submodule "dcmrs-broker"]
+	path = dcmrs-broker
+	url = https://cliftonli@github.com/RSNA/dcmrs-broker.git
