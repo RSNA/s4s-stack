@@ -1,3 +1,6 @@
 [submodule "dcmrs-broker"]
 	path = dcmrs-broker
-	url = https://cliftonli@github.com/RSNA/dcmrs-broker.git
+	url = https://github.com/RSNA/dcmrs-broker.git
+[submodule "s4s-fhir-broker"]
+        path = s4s-fhir-broker
+        url = https://github.com/RSNA/s4s-fhir-broker.git
