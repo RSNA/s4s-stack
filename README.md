@@ -14,7 +14,13 @@ git submodule update --init --recursive
 ### Pull or build
 
 ```
-docker-compose build # build the images yourself
+docker-compose build # build the images yourself #not completely working use pull
 # *or* ...
 docker-compose pull  # pull the images from Docker Hub
+```
+
+### To run or stop
+```
+docker-compose up
+docker-compose down
 ```
