@@ -1,0 +1,33 @@
+version: '3'
+
+services:
+   dcmrs-broker:
+      environment:
+         - QIDO_REMOTE_AE=PARN-DICOM
+         - QIDO_REMOTE_HOST=dicom.radiology.ucsf.edu
+         - QIDO_REMOTE_PORT=104
+         - QIDO_LOCAL_AE=PACS-3502
+         - WAD0_REMOTE_AE=PARN-DICOM
+         - WADO_REMOTE_HOST=dicom.radiology.ucsf.edu
+         - WADO_REMOTE_PORT=11112
+         - WADO_LOCAL_AE=PACS-3502
+         - SCP_LOCAL_AE=11112
+         - SCP_CACHE_DIR_PATH=/dcmrs-broker/cache
+      ports:
+         - "4567:4567"
+         - "11113:11112"
+   slapd:
+      ports:
+         - "389:389"
+   postgres:
+      ports:
+         - "5432:5432"
+   dcm4chee-arc:
+      ports:
+         - "9090:8080"
+         - "9990:9990"
+         - "11112:11112"
+         - "2575:2575"
+   instrospection-service:
+      ports:
+         - "9004:9004"
