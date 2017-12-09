@@ -1,33 +1,56 @@
-version: '3'
+version: '3.4'
 
 services:
-   dcmrs-broker:
-      environment:
-         - QIDO_REMOTE_AE=PARN-DICOM
-         - QIDO_REMOTE_HOST=dicom.radiology.ucsf.edu
-         - QIDO_REMOTE_PORT=104
-         - QIDO_LOCAL_AE=PACS-3502
-         - WAD0_REMOTE_AE=PARN-DICOM
-         - WADO_REMOTE_HOST=dicom.radiology.ucsf.edu
-         - WADO_REMOTE_PORT=11112
-         - WADO_LOCAL_AE=PACS-3502
-         - SCP_LOCAL_AE=11112
-         - SCP_CACHE_DIR_PATH=/dcmrs-broker/cache
-      ports:
-         - "4567:4567"
-         - "11113:11112"
    slapd:
+      volumes:
+         - /etc/localtime:/etc/localtime
+         - /var/local/dcm4chee-arc/ldap:/var/lib/ldap
+         - /var/local/dcm4chee-arc/slapd.d:/etc/ldap/slapd.d
       ports:
          - "389:389"
    postgres:
+      volumes:
+         - /etc/localtime:/etc/localtime
+         - /var/local/dcm4chee-arc/db:/var/lib/postgresql/data
+      environment:
+         - POSTGRES_DB=pacsdb
+         - POSTGRES_USER=pacs
+         - POSTGRES_PASSWORD=pacs
       ports:
          - "5432:5432"
    dcm4chee-arc:
+      volumes:
+         - /var/local/dcm4chee-arc/wildfly:/opt/wildfly/standalone
+         - /var/local/dcm4chee-arc/storage:/storage
       ports:
          - "9090:8080"
          - "9990:9990"
          - "11112:11112"
          - "2575:2575"
-   instrospection-service:
+   dcmrs-broker:
+      environment:
+         - QIDO_REMOTE_AE=DCM4CHEE
+         - QIDO_REMOTE_HOST=dcm4chee-arc
+         - QIDO_REMOTE_PORT=11112
+         - QIDO_LOCAL_AE=QIDO-TESTING
+         - WAD0_REMOTE_AE=DCM4CHEE
+         - WADO_REMOTE_HOST=dcm4chee-arc
+         - WADO_REMOTE_PORT=11112
+         - WADO_LOCAL_AE=WADO-TESTING
+         - SCP_LOCAL_AE=PACS-SCP
+         - SCP_CACHE_DIR_PATH=/dcmrs-broker/cache
+      volumes:
+         - /var/local/dcmrs-broker/cache:/dcmrs-broker/cache
       ports:
-         - "9004:9004"
+         - "4567:4567"
+         - "11122:11112"
+   token-introspector:
+      ports:
+         - "9004:5000"
+   s4s-fhir-broker:
+      environment:
+         - DICOM_RS_BROKER_QIDO_URL=http://dcmrs-broker:4567/qido-rs
+         - DICOM_RS_BROKER_WADO_URL=http://dcmrs-broker:4567/wado-rs
+         - INTROSPECTION_SERVICE_URL=http://token-introspector:9004/api/introspect
+      ports:
+         - "8080:8080"

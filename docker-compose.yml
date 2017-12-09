@@ -1,55 +1,20 @@
-version: '3'
+version: '3.4'
 
 services:
-   dcmrs-broker:
-      build:
-         context: ./dcmrs-broker
-         dockerfile: Dockerfile
-      image: rsna/dcmrs-broker
-      environment:
-         - QIDO_REMOTE_AE=<QIDO_REMOTE_AE>
-         - QIDO_REMOTE_HOST=<QIDO_REMOTE_HOST>
-         - QIDO_REMOTE_PORT=<QIDO_REMOTE_PORT>
-         - QIDO_LOCAL_AE=<QIDO_LOCAL_AE>
-         - WAD0_REMOTE_AE=<WAD0_REMOTE_AE>
-         - WADO_REMOTE_HOST=<WADO_REMOTE_HOST>
-         - WADO_REMOTE_PORT=<WADO_REMOTE_PORT>
-         - WADO_LOCAL_AE=<WADO_LOCAL_AE>
-         - SCP_LOCAL_AE=<SCP_LOCAL_AE>
-         - SCP_CACHE_DIR_PATH="/dcmrs-broker/cache"
-      expose:
-         - "4567"
-         - "11114"
-      networks:
-         - internal
    slapd:
       image: dcm4che/slapd-dcm4chee:2.4.44-10.5
-      volumes:
-#         - /etc/localtime:/etc/localtime
-         - s4s-ldap-volume:/var/lib/ldap
-         - s4s-slapd-volume:/etc/ldap/slapd.d
       expose:
          - "389"
       networks:
          - internal
    postgres:
       image: dcm4che/postgres-dcm4chee:9.6-10
-      volumes:
-#         - /etc/localtime:/etc/localtime
-         - s4s-psql-volume:/var/lib/postgresql/data
-      environment:
-         - POSTGRES_DB=pacsdb
-         - POSTGRES_USER=pacs
-         - POSTGRES_PASSWORD=pacs
       expose:
          - "5432"
       networks:
          - internal
    dcm4chee-arc:
       image: dcm4che/dcm4chee-arc-psql:5.10.5
-      volumes:
-         - s4s-wildfly-volume:/opt/wildfly/standalone
-         - s4s-storage-volume:/storage
       expose:
          - "8080"
          - "9990"
@@ -59,61 +24,32 @@ services:
          - slapd:ldap
          - postgres:db
       networks:
-         - internal           
+         - internal
+   dcmrs-broker:
+      build:
+         context: ./dcmrs-broker
+         dockerfile: Dockerfile
+      image: rsna/dcmrs-broker
+      expose:
+         - "4567"
+         - "11114"
+      networks:
+         - internal
+   token-introspector:
+      image: rsna/token-introspector
+      expose:
+         - "5000"
+      networks:
+         - internal         
    s4s-fhir-broker:
-      #build:
-      #   context: ./s4s-fhir-broker/hapi-fhir-jpaserver-example
-      #   dockerfile: Dockerfile
+      build:
+         context: ./s4s-fhir-broker/hapi-fhir-jpaserver-example
+         dockerfile: Dockerfile
       image: rsna/s4s-fhir-broker
-      ports:
-         - "8080:8080"
-      environment:
-         - DICOM_RS_BROKER_QIDO_URL=http://localhost:4567/qido-rs
-         - DICOM_RS_BROKER_WADO_URL=http://localhost:4567/wado-rs
-         - INTROSPECTION_SERVICE_URL=http://localhost:9004/api/introspect
       expose:
          - "8080"
       networks:
          - internal
-   load-ldap:
-      build:
-         context: ./s4s-fhir-broker/dockerLoadLdap
-         dockerfile: Dockerfile
-      image: rsna/load-ldap
-      environment:
-         - AE_TITLE=PACS-SCP
-         - DEVICE_NAME=BROKER-SCP
-         - DEVICE_HOST=192.168.1.103
-         - DEVICE_PORT=11122  
-         - LDAP_HOST=192.168.1.103
-         - LDAP_PORT=389
-      networks:
-         - internal
-   load-images:
-      build:
-         context: ./s4s-fhir-broker/dockerLoadImages
-         dockerfile: Dockerfile
-      image: rsna/load-images
-      environment:
-         - DEST_PACS=DCM4CHEE@192.168.1.103:11112
-         - IMAGE_SET=smart-1288992
-      networks:
-         - internal
-   instrospection-service:
-      #build:
-      #   context: need contxt path
-      #   dockerfile: Dockerfile
-      image: rsna/instrospection-service
-      expose:
-         - "9004"
-      networks:
-         - internal
-volumes:
-  s4s-psql-volume:
-  s4s-storage-volume:
-  s4s-wildfly-volume:
-  s4s-ldap-volume:
-  s4s-slapd-volume:
 networks:
    internal:
       driver: bridge
