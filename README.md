@@ -52,7 +52,8 @@ and mappings to the host filesystem:
  * `/var/local/dcm4chee-arc/db`: Postgres data directory
  * `/var/local/dcm4chee-arc/wildfly`: Wildfly directory
  * `/var/local/dcm4chee-arc/storage`: Dicom storage
- 
+ * `/var/local/dcmrs-broker/cache`: Cache directory for RS Broker
+  
 # Running tests
  
   To test the stack, refer to the [s4s-fhir-broker project](https://github.com/RSNA/s4s-fhir-broker#running-tests).
