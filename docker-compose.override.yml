@@ -30,11 +30,11 @@ services:
    dcmrs-broker:
       environment:
          - QIDO_REMOTE_AE=DCM4CHEE
-         - QIDO_REMOTE_HOST=dcm4chee-arc
+         - QIDO_REMOTE_HOST=<your host>
          - QIDO_REMOTE_PORT=11112
          - QIDO_LOCAL_AE=QIDO-TESTING
          - WAD0_REMOTE_AE=DCM4CHEE
-         - WADO_REMOTE_HOST=dcm4chee-arc
+         - WADO_REMOTE_HOST=<your host>
          - WADO_REMOTE_PORT=11112
          - WADO_LOCAL_AE=WADO-TESTING
          - SCP_LOCAL_AE=PACS-SCP
@@ -49,8 +49,8 @@ services:
          - "9004:5000"
    s4s-fhir-broker:
       environment:
-         - DICOM_RS_BROKER_QIDO_URL=http://dcmrs-broker:4567/qido-rs
-         - DICOM_RS_BROKER_WADO_URL=http://dcmrs-broker:4567/wado-rs
-         - INTROSPECTION_SERVICE_URL=http://token-introspector:9004/api/introspect
+         - DICOM_RS_BROKER_QIDO_URL=http://<dicomrs broker host>:4567/qido-rs
+         - DICOM_RS_BROKER_WADO_URL=http://<dicomrs broker host>:4567/wado-rs
+         - INTROSPECTION_SERVICE_URL=http://<introspection service host>:9004/api/introspect
       ports:
          - "8080:8080"

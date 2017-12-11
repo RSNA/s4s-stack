@@ -21,7 +21,9 @@ docker-compose pull  # pull the images from Docker Hub
 
 # Configure and run locally
 
-Edit `docker-compose.override.yml` as needed to configure your preferred local port and volume mapping.
+Edit `docker-compose.override.yml` and `docker-compose.loaddata.yml` with the IP address of the host and as needed configure your preferred local port and volume mapping.
+
+**Note:** The AE titles do not have to be set up in the dcm4che3e archive. However, it is important to use the actual IP address for the remote host. Do not use "localhost" or "127.0.0.1", even if the containers are on the same system.
 
 To launch the stack:
 ```
