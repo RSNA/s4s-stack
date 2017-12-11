@@ -41,6 +41,7 @@ services:
          - SCP_CACHE_DIR_PATH=/dcmrs-broker/cache
       volumes:
          - /var/local/dcmrs-broker/cache:/dcmrs-broker/cache
+         - /var/local/dcmrs-broker/custom-logging.xml:/dcmrs-broker/conf/logging.xml
       ports:
          - "4567:4567"
          - "11122:11112"
