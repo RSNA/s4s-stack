@@ -7,7 +7,7 @@ services:
          dockerfile: Dockerfile
       image: rsna/load-images
       environment:
-         - DEST_PACS=DCM4CHEE@<host SCP is on>:11112
+         - DEST_PACS=DCM4CHEE@dcm4chee-arc:11112
          - IMAGE_SET=smart-1288992
    load-ldap:
       build:
@@ -17,7 +17,7 @@ services:
       environment:
          - AE_TITLE=PACS-SCP
          - DEVICE_NAME=DCM-BROKER-SCP
-         - DEVICE_HOST=<ldap server host>
+         - DEVICE_HOST=dcmrs-broker
          - DEVICE_PORT=11122  
          - LDAP_HOST=slapd
          - LDAP_PORT=389
