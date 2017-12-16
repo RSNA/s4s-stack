@@ -38,6 +38,7 @@ services:
          - WADO_REMOTE_PORT=11112
          - WADO_LOCAL_AE=WADO-TESTING
          - SCP_LOCAL_AE=PACS-SCP
+         - SCP_LOCAL_PORT=11122
          - SCP_CACHE_DIR_PATH=/dcmrs-broker/cache
       volumes:
          - /var/local/dcmrs-broker/cache:/dcmrs-broker/cache
