@@ -53,7 +53,7 @@ and mappings to the host filesystem:
  * `/var/local/dcm4chee-arc/wildfly`: Wildfly directory
  * `/var/local/dcm4chee-arc/storage`: Dicom storage
  * `/var/local/dcmrs-broker/cache`: Cache directory for RS Broker
-  
+ * `/var/local/s4sfhirbroker`: FHIR Broker data directory
 # Running tests
  
   To test the stack, refer to the [s4s-fhir-broker project](https://github.com/RSNA/s4s-fhir-broker#running-tests).
