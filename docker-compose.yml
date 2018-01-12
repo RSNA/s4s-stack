@@ -35,8 +35,11 @@ services:
          - "11114"
       networks:
          - internal
-   token-introspector:
-      image: rsna/token-introspector
+   introspection-service:
+      build:
+         context: ./introspection-service
+         dockerfile: Dockerfile
+      image: rsna/introspection-service
       expose:
          - "5000"
       networks:

@@ -46,7 +46,7 @@ services:
       ports:
          - "4567:4567"
          - "11122:11112"
-   token-introspector:
+   introspection-service:
       ports:
          - "9004:5000"
    s4s-fhir-broker:
@@ -55,7 +55,7 @@ services:
       environment:
          - DICOM_RS_BROKER_QIDO_URL=http://dcmrs-broker:4567/qido-rs
          - DICOM_RS_BROKER_WADO_URL=http://dcmrs-broker:4567/wado-rs
-         - INTROSPECTION_SERVICE_URL=http://token-introspector:5000/api/introspect
+         - INTROSPECTION_SERVICE_URL=http://introspection-service:5000/api/introspect
          - IMAGE_ARCHIVE_WADO_RS_URL="http://dcm4chee-arc:8080/dcm4chee-arc/aets/DCM4CHEE/rs"
       ports:
          - "8080:8080"
