@@ -4,3 +4,6 @@
 [submodule "s4s-fhir-broker"]
 	path = s4s-fhir-broker
 	url = https://github.com/RSNA/s4s-fhir-broker.git
+[submodule "introspection-service"]
+	path = introspection-service
+	url = https://github.com/RSNA/introspection-service.git
