@@ -2,16 +2,16 @@ version: '3.3'
 
 services:
    slapd:
-      volumes:
-         - /etc/localtime:/etc/localtime
-         - /var/local/dcm4chee-arc/ldap:/var/lib/ldap
-         - /var/local/dcm4chee-arc/slapd.d:/etc/ldap/slapd.d
+#      volumes:
+#         - /etc/localtime:/etc/localtime
+#         - /var/local/dcm4chee-arc/ldap:/var/lib/ldap
+#         - /var/local/dcm4chee-arc/slapd.d:/etc/ldap/slapd.d
       ports:
          - "389:389"
    postgres:
-      volumes:
-         - /etc/localtime:/etc/localtime
-         - /var/local/dcm4chee-arc/db:/var/lib/postgresql/data
+#      volumes:
+#         - /etc/localtime:/etc/localtime
+#         - /var/local/dcm4chee-arc/db:/var/lib/postgresql/data
       environment:
          - POSTGRES_DB=pacsdb
          - POSTGRES_USER=pacs
@@ -19,9 +19,9 @@ services:
       ports:
          - "5432:5432"
    dcm4chee-arc:
-      volumes:
-         - /var/local/dcm4chee-arc/wildfly:/opt/wildfly/standalone
-         - /var/local/dcm4chee-arc/storage:/storage
+#      volumes:
+#         - /var/local/dcm4chee-arc/wildfly:/opt/wildfly/standalone
+#         - /var/local/dcm4chee-arc/storage:/storage
       ports:
          - "9090:8080"
          - "9990:9990"
@@ -40,9 +40,9 @@ services:
          - SCP_LOCAL_AE=PACS-SCP
          - SCP_LOCAL_PORT=11122
          - SCP_CACHE_DIR_PATH=/dcmrs-broker/cache
-      volumes:
-         - /var/local/dcmrs-broker/cache:/dcmrs-broker/cache
-         - /var/local/dcmrs-broker/custom-logging.xml:/dcmrs-broker/conf/logging.xml
+#      volumes:
+#         - /var/local/dcmrs-broker/cache:/dcmrs-broker/cache
+#         - /var/local/dcmrs-broker/custom-logging.xml:/dcmrs-broker/conf/logging.xml
       ports:
          - "4567:4567"
          - "11122:11112"
@@ -50,12 +50,12 @@ services:
       ports:
          - "9004:5000"
    s4s-fhir-broker:
-      volumes:
-         - /var/local/s4sfhirbroker:/var/lib/jetty/data
+#      volumes:
+#         - /var/local/s4sfhirbroker:/var/lib/jetty/data
       environment:
          - DICOM_RS_BROKER_QIDO_URL=http://dcmrs-broker:4567/qido-rs
          - DICOM_RS_BROKER_WADO_URL=http://dcmrs-broker:4567/wado-rs
          - INTROSPECTION_SERVICE_URL=http://introspection-service:5000/api/introspect
-         - IMAGE_ARCHIVE_WADO_RS_URL="http://dcm4chee-arc:8080/dcm4chee-arc/aets/DCM4CHEE/rs"
+         - IMAGE_ARCHIVE_WADO_RS_URL="http://dcmrs-broker:4567/wado-rs"
       ports:
          - "8080:8080"
