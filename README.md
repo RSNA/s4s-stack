@@ -45,15 +45,16 @@ By default, you'll have servers running at ports:
  * `11122`: DICOM-RS Broker SCP
  * `9004`: Introspection service
  
-and mappings to the host filesystem:
+The following Docker volumes will be created:
 
- * `/etc/localtime`: Sync the time with the host machine
- * `/var/local/dcm4chee-arc/ldap`: LDAP data directory
- * `/var/local/dcm4chee-arc/db`: Postgres data directory
- * `/var/local/dcm4chee-arc/wildfly`: Wildfly directory
- * `/var/local/dcm4chee-arc/storage`: Dicom storage
- * `/var/local/dcmrs-broker/cache`: Cache directory for RS Broker
- * `/var/local/s4sfhirbroker`: FHIR Broker data directory
+ * `ldap-vol`: LDAP data directory
+ * `slapd-vol`: Slapd data directory
+ * `postgres-data` : Postgres data directory
+ * `wildfly-vol`: Wildfly directory
+ * `dcm4chee-arc-vol`: Dicom storage
+ * `dcmrs-broker-vol`: Cache directory for RS Broker
+ * `s4s-fhir-broker-vol`: FHIR Broker data
+ 
 # Running tests
  
   To test the stack, refer to the [s4s-fhir-broker project](https://github.com/RSNA/s4s-fhir-broker#running-tests).
