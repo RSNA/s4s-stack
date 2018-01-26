@@ -49,7 +49,7 @@ The following Docker volumes will be created:
 
  * `ldap-vol`: LDAP data directory
  * `slapd-vol`: Slapd data directory
- * `postgres-data` : Postgres data directory
+ * `postgres-data-vol` : Postgres data directory
  * `wildfly-vol`: Wildfly directory
  * `dcm4chee-arc-vol`: Dicom storage
  * `dcmrs-broker-vol`: Cache directory for RS Broker

@@ -31,7 +31,7 @@ services:
          - QIDO_REMOTE_HOST=dcm4chee-arc
          - QIDO_REMOTE_PORT=11112
          - QIDO_LOCAL_AE=QIDO-TESTING
-         - WAD0_REMOTE_AE=DCM4CHEE
+         - WADO_REMOTE_AE=DCM4CHEE
          - WADO_REMOTE_HOST=dcm4chee-arc
          - WADO_REMOTE_PORT=11112
          - WADO_LOCAL_AE=WADO-TESTING
