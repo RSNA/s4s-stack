@@ -1,7 +1,7 @@
 # Use and deploy this stack
 To run it, you need Docker >= 1.10, and docker-compose
 
-## Clone this repo with submodules
+### Clone this repo with submodules
 ```
 git clone --recursive https://github.com/RSNA/s4s-stack
 ```
@@ -14,24 +14,21 @@ git submodule update --init --recursive
 ### Pull or build
 
 ```
-docker-compose build # build the images yourself
-# *or* ...
 docker-compose pull  # pull the images from Docker Hub
+# *or* ...
+docker-compose build # build the images yourself
 ```
 
-# Configure and run locally
-
-Edit `docker-compose.override.yml` and `docker-compose.loaddata.yml` as needed to configure your preferred local port and volume mappings. 
-
-To launch the stack:
+### To launch the stack:
 ```
 docker-compose up
 ```
-
-Wait for the services to install then load sample data.
+### Wait for the services to install then load sample data:
 ```
 docker-compose -f docker-compose.loaddata.yml up
 ```
+
+S4s-stack will run without any modications to the yml files. Optionally, if you like use your preferred local port and volume mappings, edit `docker-compose.override.yml` and `docker-compose.loaddata.yml`.
 
 By default, you'll have servers running at ports:
 
@@ -55,12 +52,11 @@ The following Docker volumes will be created:
  * `dcmrs-broker-vol`: Cache directory for RS Broker
  * `s4s-fhir-broker-vol`: FHIR Broker data
  
-# Running tests
+### Running tests
  
   To test the stack, refer to the [s4s-fhir-broker project](https://github.com/RSNA/s4s-fhir-broker#running-tests).
   
-# Update submodules to latest on GH branches
+### Update submodules to latest on GH branches
 ```
 git submodule update --remote
 ```
-
