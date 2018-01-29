@@ -1,5 +1,5 @@
 # Use and deploy this stack
-To run it, you need Docker >= 1.10, and docker-compose
+To run it, you need Docker >= 17.06.0, and docker-compose
 
 ### Clone this repo with submodules
 ```
