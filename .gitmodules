@@ -7,3 +7,6 @@
 [submodule "introspection-service"]
 	path = introspection-service
 	url = https://github.com/RSNA/introspection-service.git
+[submodule "s4s-edgeserverdb"]
+	path = s4s-edgeserverdb
+	url = https://github.com/RSNA/s4s-edgeserverdb.git
