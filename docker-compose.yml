@@ -32,7 +32,7 @@ services:
       image: rsna/dcmrs-broker
       expose:
          - "4567"
-         - "11114"
+         - "11112"
       networks:
          - internal
    introspection-service:
@@ -51,6 +51,15 @@ services:
       image: rsna/s4s-fhir-broker
       expose:
          - "8080"
+      networks:
+         - internal
+   rsnadb:
+      build:
+         context: ./s4s-edgeserverdb
+         dockerfile: Dockerfile
+      image: rsna/s4s-edgeserverdb
+      expose:
+         - "5432"
       networks:
          - internal
 networks:

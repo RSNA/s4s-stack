@@ -56,6 +56,13 @@ services:
          - IMAGE_ARCHIVE_WADO_RS_URL="http://dcmrs-broker:4567/wado-rs"
       ports:
          - "8080:8080"
+   rsnadb:
+      environment:
+         - POSTGRES_DB=rsnadb
+         - POSTGRES_USER=edge
+         - POSTGRES_PASSWORD=psword
+      ports:
+         - "5433:5432"
 volumes:
     ldap-vol:
     slapd-vol:
