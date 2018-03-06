@@ -47,13 +47,14 @@ services:
       ports:
          - "9004:5000"
    s4s-fhir-broker:
-      volumes:
-         - s4s-fhir-broker-vol:/var/lib/jetty/data
       environment:
          - DICOM_RS_BROKER_QIDO_URL=http://dcmrs-broker:4567/qido-rs
          - DICOM_RS_BROKER_WADO_URL=http://dcmrs-broker:4567/wado-rs
          - INTROSPECTION_SERVICE_URL=http://introspection-service:5000/api/introspect
          - IMAGE_ARCHIVE_WADO_RS_URL="http://dcmrs-broker:4567/wado-rs"
+         - PID_LOOKUP_DB_URL="jdbc:derby:directory:/data/pidLookup;create=true"
+         - DIAGNOSTIC_REPORT_DB_URL="jdbc:postgresql://rsnadb:5433/rsnadb"
+         - DIAGNOSTIC_REPORT_PERFORMER_REFERENCE="Organization/57"
       ports:
          - "8080:8080"
    rsnadb:
@@ -70,4 +71,3 @@ volumes:
     wildfly-vol:
     dcm4chee-arc-vol:
     dcmrs-broker-vol:
-    s4s-fhir-broker-vol:
