@@ -50,7 +50,7 @@ services:
       environment:
          - DICOM_RS_BROKER_QIDO_URL=http://dcmrs-broker:4567/qido-rs
          - DICOM_RS_BROKER_WADO_URL=http://dcmrs-broker:4567/wado-rs
-         - INTROSPECTION_SERVICE_URL=http://introspection-service:5000/api/introspect
+         - INTROSPECTION_SERVICE_URL=http://introspection-service:9004/api/introspect
          - IMAGE_ARCHIVE_WADO_RS_URL="http://dcmrs-broker:4567/wado-rs"
          - PID_LOOKUP_DB_URL="jdbc:derby:directory:/data/pidLookup;create=true"
          - DIAGNOSTIC_REPORT_DB_URL="jdbc:postgresql://rsnadb:5433/rsnadb"
