@@ -36,10 +36,7 @@ services:
       networks:
          - internal
    introspection-service:
-      build:
-         context: ./token-introspector
-         dockerfile: Dockerfile
-      image: rsna/introspection-service
+      image: syncforscience/token-introspector
       expose:
          - "5000"
       networks:
