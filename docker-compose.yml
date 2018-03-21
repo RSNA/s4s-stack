@@ -37,7 +37,7 @@ services:
          - internal
    introspection-service:
       build:
-         context: ./introspection-service
+         context: ./token-introspector
          dockerfile: Dockerfile
       image: rsna/introspection-service
       expose:

@@ -4,9 +4,10 @@
 [submodule "s4s-fhir-broker"]
 	path = s4s-fhir-broker
 	url = https://github.com/RSNA/s4s-fhir-broker.git
-[submodule "introspection-service"]
-	path = introspection-service
-	url = https://github.com/RSNA/introspection-service.git
 [submodule "s4s-edgeserverdb"]
 	path = s4s-edgeserverdb
 	url = https://github.com/RSNA/s4s-edgeserverdb.git
+[submodule "token-introspector"]
+	path = token-introspector
+	url = https://github.com/sync-for-science/token-introspector
+	branch = master

@@ -46,6 +46,9 @@ services:
    introspection-service:
       ports:
          - "9004:5000"
+      environment:
+         - API_SERVER=https://portal-stu3.demo.syncfor.science/api/fhir
+         - API_SERVER_NAME='SMART STU-3 PORTAL'
    s4s-fhir-broker:
       environment:
          - DICOM_RS_BROKER_QIDO_URL=http://dcmrs-broker:4567/qido-rs
